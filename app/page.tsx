@@ -33,7 +33,7 @@ export default function Home() {
       //  console.log(boxes);
        requestAnimationFrame(()=>{
 
-        const screens = document.querySelectorAll(".product_screen");
+        const screens = document.querySelectorAll(".screen_img");
         screens.forEach(item => {
             gsap.timeline({
               scrollTrigger:{
@@ -45,7 +45,7 @@ export default function Home() {
     
               }
             }).to(item,{
-              x: -6,scale: 1.5, delay: 2, ease: 'bounce.out',stagger: 0.1 
+              x: -6,scale: 1, delay: 2, ease: 'bounce.out',stagger: 0.1 
             }).to(item,{
              x: 6,delay: 2, ease: 'bounce.in'
             })

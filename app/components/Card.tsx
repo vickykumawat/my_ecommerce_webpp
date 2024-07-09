@@ -27,7 +27,7 @@ const Card:React.FC<CardItemsProps> = ({
     setShowMessage(true);
     setTimeout(() => {
       setShowMessage(false);
-    }, 3000);
+    }, 1200);
   };
 
   return (
@@ -75,7 +75,7 @@ const Card:React.FC<CardItemsProps> = ({
           )}
         </div>
         <div data-speed= "0.5" className={`product_screen ${screen_styles} max-w-full`}>
-          <Image src={imageUrl} className='w-2/4' alt="product-image"  />
+          <Image src={imageUrl} className='w-2/4 relative screen_img' alt="product-image"  />
         </div>
         <div className={`product_buttons ${buttons_styles}`}>
           <CustomButton style={`min-w-[10%] p-2 rounded-xl`}>
