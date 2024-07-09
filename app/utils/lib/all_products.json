@@ -1,0 +1,96 @@
+{
+    "title": "All_products",
+    "categories":[
+        {
+            "id": 1,
+            "category": "gadgetsAndAppliances",
+            "products":[
+                {
+                    "id": 1,
+                    "label": "HP LAPTOP",
+                    "price": "$200"
+                },
+                {
+                    "id": 2,
+                    "label": "Heaset N",
+                    "price": "$40",
+                    "imageUrl": "/Headset.jpg"
+                },
+                {
+                    "id": 3,
+                    "label": "Smart Watch G",
+                    "price": "$70"
+                },
+                {
+                    "id": 4,
+                    "label": "Airpod T",
+                    "price": "$50",
+                    "imageUrl": "/airpods.jpg"
+                }
+               
+            ]
+        },
+        {
+            "id": 2,
+            "category": "MensFashion",
+            "products": [
+                {
+                    "id": 1,
+                    "label": "men's Jacket",
+                    "price": "$200",
+                    "imageUrl": ""
+                },
+                {
+                    "id": 2,
+                    "label": "men's shirt",
+                    "price": "$80",
+                    "imageUrl": ""
+                },
+                {
+                "id": 3,
+                "label": "men's shoe",
+                "price": "$50",
+                "imageUrl": ""
+            },
+            {
+                "id": 4,
+                "label": "sneaker z",
+                "price": "$60",
+                "imageUrl": ""
+            }
+            ]
+        },
+        {
+            "id": 3,
+            "category": "Fruits",
+            "products":[
+                {
+                    "id": 1,
+                    "label": "banana",
+                    "imageUrl":"",
+                    "price":"$2"
+                },
+                {
+                    "id": 2,
+                    "label": "orange",
+                    "imageUrl":"",
+                    "price":"$1"
+                },
+                {
+                    "id": 3,
+                    "label": "strawberry",
+                    "imageUrl":"",
+                    "price":"$1"
+                },
+                {
+                    "id": 4,
+                    "label": "apple",
+                    "imageUrl":"",
+                    "price":"$1"
+                }
+            ]
+        }
+       
+
+    ]
+}
