@@ -59,7 +59,7 @@ export default function Home() {
 
 
   return (
-    <div ref={container} className="w-full main_grid scroll-smooth">
+    <div ref={container} className="max-w-full main_grid scroll-smooth overflow-hidden">
       
       <Hero/>
       <Card 
