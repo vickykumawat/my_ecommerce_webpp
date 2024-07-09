@@ -40,7 +40,6 @@ export default function Home() {
                 trigger: item,
                 pin: false,
                 scrub: true,
-                markers:true,
                 start: "top center",
                 end: "+=80px",
     
