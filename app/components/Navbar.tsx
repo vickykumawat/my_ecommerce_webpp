@@ -5,12 +5,21 @@ import hamburger from "../../public/hamburger.svg";
 import brand_logo from "../../public/logo.svg";
 import Image from 'next/image';
 import SearchIcon from './SearchIcon';
+import Link from 'next/link';
+import { useProducts } from '../utils/context/Context';
 
 
 
 type Props = {}
 
 function Navbar({}: Props) {
+  const { setShowCart } = useProducts();
+  const handleShowCart = ()=>{
+      setShowCart(true);
+  }
+
+
+
   return (
     <nav className='p-1  md:p-3 lg:p-5'>
       <div  className='min-w-full  nav_holder'>
@@ -21,7 +30,7 @@ function Navbar({}: Props) {
 
         <div className='my_flex gap-[20px]  p-3 icon_holder'>
           <div >
-            <Image src={cart_logo} alt='cart-icon' className='md: w-[25px] lg:w-[30px]' />
+            <Image src={cart_logo} alt='cart-icon' className='md: w-[25px] lg:w-[30px]' onClick={handleShowCart} />
           </div>
           <div><Image src={account_logo}  alt='account-icon' className='md:w-[25px] lg:w-[30px]' /></div>
           <div><Image src={hamburger}  alt='hamburger' className='block md:hidden'/></div>
@@ -41,6 +50,7 @@ function Navbar({}: Props) {
         </div>
       </div>
   </nav>
+  
   )
 }
 

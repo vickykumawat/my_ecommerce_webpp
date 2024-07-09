@@ -35,7 +35,9 @@ export interface ProductProps {
 
   export interface productContextProps{
     categories: CategoryProps[];
-    getCategory: (category: string) => CategoryProps | undefined
+    getCategory: (category: string) => CategoryProps | undefined;
+    showCart: boolean ;
+    setShowCart :React.Dispatch<React.SetStateAction<boolean>> ;
   }
 
   export interface CardItemsProps {
@@ -51,4 +53,12 @@ export interface ProductProps {
       product_title: string;
       product_price: string;
       header_card?: boolean;
+};
+
+export interface cartItemProps {
+  itemImg :StaticImageData,
+  itemPrice: string,
+  itemQuantity: string,
+  itemTotal:string,
+  itemLabel: string
 }

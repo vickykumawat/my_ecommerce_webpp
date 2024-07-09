@@ -7,9 +7,11 @@ const productContext = createContext<productContextProps  | undefined>(undefined
 
 export const ProductsProvider: React.FC<{children: React.ReactNode}> = ({children}) =>{
     const [categories, setCategories] = useState<CategoryProps[]>([]);
+    const [showCart, setShowCart] = useState<boolean >(false);
 
     useEffect(()=>{
         setCategories(productsData.categories)
+        // setShowCart(false)
     },[]);
 
     const getCategory = (categoryName: string) =>{
@@ -17,7 +19,7 @@ export const ProductsProvider: React.FC<{children: React.ReactNode}> = ({childre
     }
 
     return(
-        <productContext.Provider value={{categories, getCategory}}>
+        <productContext.Provider value={{categories, getCategory , showCart, setShowCart }}>
             {children}
         </productContext.Provider>
     )

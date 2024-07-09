@@ -14,13 +14,14 @@ import { useGSAP } from "@gsap/react";
     
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
+import Cart from "./components/Cart";
 
 gsap.registerPlugin(useGSAP,ScrollTrigger);
 
 
 
 export default function Home() {
-  const { getCategory } = useProducts();
+  const { showCart, setShowCart, getCategory } = useProducts();
   const gadgetsAndAppliances = getCategory("gadgetsAndAppliances");
   const mensFashion = getCategory("mensFashion");
   const fruits = getCategory("Fruits");
@@ -99,7 +100,14 @@ export default function Home() {
       <DiscountBox/>
       <Footer/>
       
-     
+
+
+      {showCart && (
+        <div id="cart_box" className="cart_bag">
+         <Cart/>
+        </div>
+      )}
+    
       
     </div>
   );
