@@ -37,7 +37,7 @@ const Card:React.FC<CardItemsProps> = ({
         {product_label  ? (
             <div className={` product_heading ${heading_styles}`}>
               <div className='flex header_box  text-center '>
-                <p className='text-xl md:text-4xl font-bold product_header p-1'>{product_label}</p>
+                <p className='text-lg md:text-4xl font-bold product_header p-1'>{product_label}</p>
                 <span className='hidden md:flex items-center category_box font-normal text-sm md:text-lg xl:text-xl border border-[#F05A28] px-2'>
                   <p className=''>Select Category</p>
                   <DropdownMenu>
@@ -70,13 +70,13 @@ const Card:React.FC<CardItemsProps> = ({
         <div className={`product_title ${title_styles}`}>
           <p className='font-medium'> {product_title}</p>
           <p className='font-bold text-sm'>{product_price}</p>
-          {showMessage && (
-            <p id="message" className='text-xs text-[#F05A28]'> added to Cart! </p>
-          )}
         </div>
         <div data-speed= "0.5" className={`product_screen ${screen_styles} max-w-full`}>
           <Image src={imageUrl} className='w-2/4 relative screen_img' alt="product-image"  />
         </div>
+         {showMessage && (
+           <div className='msg_cont'> <p id="message" className='text-sm text-black'> Added to Cart! </p></div>
+          )}
         <div className={`product_buttons ${buttons_styles}`}>
           <CustomButton style={`min-w-[10%] p-2 rounded-xl`}>
               1

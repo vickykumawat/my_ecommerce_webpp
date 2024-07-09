@@ -13,7 +13,7 @@ type Props = {}
 function Navbar({}: Props) {
   return (
     <nav className='p-1  md:p-3 lg:p-5'>
-      <div  className='min-w-full p-3 nav_holder'>
+      <div  className='min-w-full  nav_holder'>
         <div className=' my_flex px-3 logo_band xl:font-lg'>
           <div><Image src={brand_logo} alt='cart-icon'  className='md:w-[25px] lg:w-[30px] brand_logo'/></div>
           <p className='text-white'>UrbanNest</p>

@@ -31,7 +31,13 @@
 .hero_grid{
   grid-column: 1 / 7 ;
   grid-row: 1 / 8;
+
+  
   /* border: 1px solid green; */
+}
+.hero_content{
+  display: grid;
+  gap: 8px;
 }
 .hero_bg{
   background-image: url('../public/home.svg');
@@ -116,9 +122,12 @@
 .product_screen img{
   background-color: #FEF1ED
 }
-.product_stock_info{
+.msg_cont{
   grid-column: 1/7;
-  grid-row: span 3;
+  grid-row: span 1;
+  display: grid;
+  place-content: center;
+  place-items: center;
 }
 .product_buttons{
   grid-column: 1/7;
@@ -137,14 +146,15 @@
 }
 .discount_box{
  
-  margin: 15px auto;
   background-color:  #FF9774;
 }
 .discount_btn{
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-}
+ border-radius: 8px;
 
+}
+.input_tag{
+  border-radius: 50%;
+}
 .footer_holder{
     grid-column: 1/7;
     grid-row: span 8;
