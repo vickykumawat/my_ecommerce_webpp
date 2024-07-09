@@ -306,6 +306,10 @@
     grid-column: 1/ 13;
     grid-row: 1/ 12;
   }
+  .hero_content{
+   margin-top:  20px;
+   padding: 5px;
+  }
   .card_items_box{
     grid-column: 1/13;
     grid-row: span 5;

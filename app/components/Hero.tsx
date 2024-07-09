@@ -10,13 +10,13 @@ function Hero({}: Props) {
   return (
     <section className='hero_grid bg-home-bg bg-no-repeat bg-cover  bg-center text-white' >
       <Navbar/>
-      <div className='hero_content'>
+      <div className='hero_content '>
         <SearchIcon styling="max-w-[80%] rounded-xl border border-yellow-500 search_flex  px-3 md:hidden"/>
 
-        <div className='text-2xl md:text-4xl lg:text-4xl lg:font-bold xl:text-5xl max-w-[60%] md:max-w-[50%] lg:max-w-[35%] mx-auto text-center '>
+        <div className='text-2xl max-w-[60%] md:text-4xl lg:text-5xl lg:font-bold  md:max-w-[50%] lg:max-w-[50%] lg:py-7 xl:text-7xl xl:min-w-[200px] mx-auto text-center '>
           <h1 className=''>Your one stop Mini Online store</h1>
         </div>
-        <div className='mx-auto text-xs  max-w-[80%] md:max-w-[50%] lg:max-w-[30%] text-center '>
+        <div className='mx-auto text-xs  max-w-[80%] md:max-w-[50%] lg:max-w-[50%] lg:text-lg  font-thin text-center '>
           <p>Explore your unique favorite for every occasion,
             all conveniently delivered right to your doorstep
           </p>
