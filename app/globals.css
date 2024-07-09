@@ -326,7 +326,7 @@
   }
   .advert-holder{
     grid-column: 1/13;
-    grid-row: span 5;
+    grid-row: span 4;
   }
   .first_card{
     grid-column: 1/13;

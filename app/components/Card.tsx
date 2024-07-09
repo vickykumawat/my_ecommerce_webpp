@@ -78,10 +78,10 @@ const Card:React.FC<CardItemsProps> = ({
           <CustomButton style={`min-w-[10%] p-2 rounded-xl`}>
               1
           </CustomButton>
-          <CustomButton style={`min-w-[20%] btn_color p-2 rounded-xl text-white`}>
+          <CustomButton style={`min-w-[20%] btn_color p-2 rounded-xl `}>
               Add to Cart
           </CustomButton>
-          <CustomButton style={`min-w-[20%] text-[#F05A28]  p-2  rounded-xl text-white`}>
+          <CustomButton style={`min-w-[20%] text-[#F05A28] p-2 rounded-xl`}>
               Add to Wishlist
           </CustomButton>
         </div>
