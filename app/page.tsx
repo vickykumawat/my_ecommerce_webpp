@@ -76,7 +76,7 @@ export default function Home() {
       />
       <AdvertBanner/>
       <Card
-      product_title="Men's Jacket"
+      product_title="Men&apos;s Jacket"
       product_price="$200"
        heading_styles={`text-lg font-bold`}
        title_styles={``}
