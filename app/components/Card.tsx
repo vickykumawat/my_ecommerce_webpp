@@ -12,7 +12,6 @@ import {
 
 
 const Card:React.FC<CardItemsProps> = ({
-  header_card,
   product_label,
   product_title,
   product_price,
@@ -49,7 +48,7 @@ const Card:React.FC<CardItemsProps> = ({
                             </DropdownMenuItem>
                             <DropdownMenuSeparator/>
                             <DropdownMenuItem className="text-white text-sm">
-                                Men's Fashion
+                                Men&apos;s Fashion
                             </DropdownMenuItem>
                             <DropdownMenuSeparator/>
 
