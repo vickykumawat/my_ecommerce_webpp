@@ -40,12 +40,13 @@ export default function Home() {
                 trigger: item,
                 pin: false,
                 scrub: true,
-                start: "center center",
-                end: "bottom center",
+                markers:true,
+                start: "top center",
+                end: "+=80px",
     
               }
             }).to(item,{
-              x: -6, delay: 2, ease: 'bounce.out',stagger: 0.1 
+              x: -6,scale: 1.5, delay: 2, ease: 'bounce.out',stagger: 0.1 
             }).to(item,{
              x: 6,delay: 2, ease: 'bounce.in'
             })
@@ -95,16 +96,7 @@ export default function Home() {
        buttons_styles={`font-bold`}
        imageUrl={strawberries}
       />
-      <Card
-      product_title="Gadgets and Appliances"
-      product_price="$200"
-       heading_styles={`text-lg font-bold`}
-       title_styles={``}
-       screen_styles={``}
-       stock_info_styles={``}
-       buttons_styles={`font-bold`}
-       imageUrl={smart_watch}
-      />
+      
       <DiscountBox/>
       <Footer/>
       

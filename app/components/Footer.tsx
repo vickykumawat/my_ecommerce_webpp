@@ -52,7 +52,7 @@ const Footer = (props: Props) => {
             </div>
             <div className='root_holder mt-3 border-b border-t border-[#F05A28] p-2'>
                 <div className='root_box flex flex-col justify-center items-center gap-3 '>
-                    <div className='p-2'><Image src={social_link} alt='social media links'/></div>
+                    <div className='p-2'><Image src={social_link} className='w-[200px]' alt='social media links'/></div>
                     <div><p className='text-[#898989]'>&copy; 2024 Urban Next All Rights Reserved</p> </div>
                 </div>
             </div>

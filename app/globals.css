@@ -118,7 +118,7 @@
 }
 .product_stock_info{
   grid-column: 1/7;
-  grid-row: span 1;
+  grid-row: span 3;
 }
 .product_buttons{
   grid-column: 1/7;

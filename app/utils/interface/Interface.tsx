@@ -4,7 +4,7 @@ export type ButtonType = {
     style: string,
     children?: React.ReactNode,
     btnCategory?:string,
-    handle_click?:() => void
+    handleClick?:() => void
 }
 export type searchIconProps = {
     styling: string,
@@ -43,10 +43,12 @@ export interface ProductProps {
     heading_styles?: string;
     title_styles: string;
     screen_styles: string;
-    stock_info_styles:string,
+    stock_info_styles?:string,
+    stock_info_desc?: string,
+    stock_info_btn?: string,
     buttons_styles:string,
     imageUrl:StaticImageData;
-  product_title: string;
-  product_price: string;
-  header_card?: boolean;
+      product_title: string;
+      product_price: string;
+      header_card?: boolean;
 }

@@ -20,7 +20,9 @@ function Navbar({}: Props) {
         </div>
 
         <div className='my_flex gap-[20px]  p-3 icon_holder'>
-          <div ><Image src={cart_logo} alt='cart-icon' className='md: w-[25px] lg:w-[30px]' /></div>
+          <div >
+            <Image src={cart_logo} alt='cart-icon' className='md: w-[25px] lg:w-[30px]' />
+          </div>
           <div><Image src={account_logo}  alt='account-icon' className='md:w-[25px] lg:w-[30px]' /></div>
           <div><Image src={hamburger}  alt='hamburger' className='block md:hidden'/></div>
         </div>

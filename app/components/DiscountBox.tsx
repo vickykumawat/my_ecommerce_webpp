@@ -10,10 +10,10 @@ function DiscountBox({}: Props) {
             <div className=' flex flex-col'>
                  <span className='text-3xl font-bold'>Get 25% Discount</span> 
                  <span className=' font-normal text-2xl mt-2'>On Next Order</span></div>
-            <div className=' max-w-[90%] border bg-[#4B4B4B] m-5 flex justify-between p-1 rounded-xl relative'>
-                <input className='bg-transparent max-w-[80%] px-3 border border-[#4B4B4B] rounded-md' placeholder='Enter Your email'/>
-                <button className='bg-[#FF9774] px-3 text-xl  text-center discount_btn '>suscribe</button>
-            </div>
+            <div className=' max-w-[90%] border bg-[#4B4B4B] m-5 flex gap-3 p-1 rounded-xl relative'>
+                <input className='bg-transparent max-w-[70%] px-3 border border-[#4B4B4B] rounded-md' placeholder='Enter Your email'/>
+                <button className='bg-[#FF9774] max-w-[100%] px-2 text-xl  text-center discount_btn '>suscribe</button>
+            </div> 
        </div>
     </div>
   )

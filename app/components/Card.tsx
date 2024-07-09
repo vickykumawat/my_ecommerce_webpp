@@ -22,9 +22,13 @@ const Card:React.FC<CardItemsProps> = ({
   buttons_styles,
   imageUrl,
 }) => {
-  
- 
-  
+  const  [showMessage, setShowMessage] = useState<boolean>(false);
+  const handleCart = () => {
+    setShowMessage(true);
+    setTimeout(() => {
+      setShowMessage(false);
+    }, 3000);
+  };
 
   return (
     <div className='card_items_box  bg-[#FEF1ED] mb-3'>
@@ -66,22 +70,21 @@ const Card:React.FC<CardItemsProps> = ({
         <div className={`product_title ${title_styles}`}>
           <p className='font-medium'> {product_title}</p>
           <p className='font-bold text-sm'>{product_price}</p>
+          {showMessage && (
+            <p id="message" className='text-xs text-[#F05A28]'> added to Cart! </p>
+          )}
         </div>
         <div data-speed= "0.5" className={`product_screen ${screen_styles} max-w-full`}>
-          <Image src={imageUrl}  alt="product-image"  />
-        </div>
-        <div className={`product_stock_info hidden ${stock_info_styles}`}>
-          <p></p>
-          <p></p>
+          <Image src={imageUrl} className='w-2/4' alt="product-image"  />
         </div>
         <div className={`product_buttons ${buttons_styles}`}>
           <CustomButton style={`min-w-[10%] p-2 rounded-xl`}>
               1
           </CustomButton>
-          <CustomButton style={`min-w-[20%] btn_color p-2 rounded-xl `}>
+          <CustomButton handleClick={handleCart} style={`min-w-[20%] btn_color p-2 rounded-xl cart`}>
               Add to Cart
           </CustomButton>
-          <CustomButton style={`min-w-[20%] text-[#F05A28] p-2 rounded-xl`}>
+          <CustomButton style={`min-w-[20%] text-[#F05A28] p-2 rounded-xl`}> 
               Add to Wishlist
           </CustomButton>
         </div>
