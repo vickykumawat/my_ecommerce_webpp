@@ -9,6 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import number_one from "../../public/one_btn.svg"
 
 
 const Card:React.FC<CardItemsProps> = ({
@@ -68,8 +69,8 @@ const Card:React.FC<CardItemsProps> = ({
         ): (<> </>)}
          
         <div className={`product_title ${title_styles}`}>
-          <p className='font-medium'> {product_title}</p>
-          <p className='font-bold text-sm'>{product_price}</p>
+          <p className='font-medium xl:font-bold text-2xl'> {product_title}</p>
+          <p className='font-bold text-sm xl:text-lg'>{product_price}</p>
         </div>
         <div data-speed= "0.5" className={`product_screen ${screen_styles} max-w-full`}>
           <Image src={imageUrl} className='w-2/4 relative screen_img' alt="product-image"  />
@@ -78,13 +79,14 @@ const Card:React.FC<CardItemsProps> = ({
            <div className='msg_cont'> <p id="message" className='text-sm text-black'> Added to Cart! </p></div>
           )}
         <div className={`product_buttons ${buttons_styles}`}>
-          <CustomButton style={`min-w-[10%] p-2 rounded-xl`}>
-              1
+          <CustomButton style={`min-w-[10%] p-2 rounded-[8px] text-[#F05A28] increase`}>
+           <Image src={number_one} className='' alt="product-image"  />
+              
           </CustomButton>
-          <CustomButton handleClick={handleCart} style={`min-w-[20%] btn_color p-2 rounded-xl cart`}>
+          <CustomButton handleClick={handleCart} style={`min-w-[20%] btn_color p-2 rounded-[8px] cart`}>
               Add to Cart
           </CustomButton>
-          <CustomButton style={`min-w-[20%] text-[#F05A28] p-2 rounded-xl`}> 
+          <CustomButton style={`min-w-[20%] text-[#F05A28] p-2 rounded-[8px]`}> 
               Add to Wishlist
           </CustomButton>
         </div>

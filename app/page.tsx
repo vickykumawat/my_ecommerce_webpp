@@ -60,6 +60,7 @@ export default function Home() {
 
 
   return (
+    
     <div ref={container} className="min-w-full main_grid scroll-smooth overflow-hidden">
       
       <Hero/>

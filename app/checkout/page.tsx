@@ -6,19 +6,25 @@ import history from '../../public/history.svg';
 import payment from '../../public/paym_method.svg';
 import cards from '../../public/card_det.svg';
 import CustomButton from '../components/CustomButton';
+import { useProducts } from '../utils/context/Context';
 
 
 
 type Props = {}
 
 const Checkout = (props: Props) => {
+
+  // const { setShowCart } = useProducts();
+
+
+
   return (
     <div className='min-h-screen bg-[#FEF1ED] p-5'>
        <div className='checkout_nav max-w-[730px] mx-auto'>
           <div className='order_summary'>
-            <Link href="/cart" className='back_line'>
+            <Link href="/"  className='back_line'>
               <Image src={back_logo} alt ="go back"/>
-              <p className='text-xl text-bold text-[#F05A28]'> Order Summary </p>
+              <p className='text-lg text-bold text-[#F05A28]'> Order Summary </p>
             </Link>
           </div>
           <div className='history_box relative'>
@@ -35,7 +41,7 @@ const Checkout = (props: Props) => {
         
         
           <CustomButton  style='payment_btn text-white p-4 '>
-              <Link href="/success">
+              <Link href="/success" >
                 Make Payment
               </Link>
           </CustomButton>

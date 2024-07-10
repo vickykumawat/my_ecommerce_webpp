@@ -13,7 +13,7 @@ import { useProducts } from '../utils/context/Context';
 type Props = {}
 
 function Navbar({}: Props) {
-  const { setShowCart } = useProducts();
+  const { setShowCart } = useProducts()
   const handleShowCart = ()=>{
       setShowCart(true);
   }

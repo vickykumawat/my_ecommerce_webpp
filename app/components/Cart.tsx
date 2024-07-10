@@ -1,3 +1,4 @@
+
 import { Section } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -8,17 +9,25 @@ import smart_watch from '../../public/smart-watch.svg';
 import jacket from '../../public/jacket101.svg';
 import CustomButton from './CustomButton'
 import { useProducts } from '../utils/context/Context'
+// import { useRouter } from 'next/navigation'
+// import { useRouter } from 'next/navigation'
 
-type Props = {}
 
-const Cart = (props: Props) => {
+
+const Cart = () => {
     const { setShowCart } = useProducts();
-    // const to_checkout = document.querySelector(".proceed_")?.addEventListener("click",)
+    // const router = useRouter();
+
+  const handleCheckout = () => {
+    setShowCart(false);
+    // router.push('/checkout'); 
+
+  };
 
   return (
    <section className='cart_main p-3 rounded-xl'>
-        <Link href="/" className=' back_link gap-5 '> 
-            <Image src={back_logo}  width={10} height={10} alt='back home' onClick={()=> setShowCart(false)}/>
+        <Link href="/" className=' back_link gap-5' onClick={handleCheckout}> 
+            <Image src={back_logo}  width={10} height={10} alt='back home' />
             <p className='text-xl text-bold text-[#F05A28]'> Cart </p>
         </Link>
         <CartItem
@@ -50,7 +59,7 @@ const Cart = (props: Props) => {
             </div>
         </div>
         <CustomButton  style='proceed_ text-white p-3'>
-            <Link href="/checkout">
+            <Link href="/checkout"   >
                 Proceed to Checkout
             </Link>
         </CustomButton>
