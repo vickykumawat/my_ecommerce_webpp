@@ -1,3 +1,4 @@
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import { StaticImageData } from "next/image";
 
 export type ButtonType = {
@@ -10,55 +11,95 @@ export type searchIconProps = {
     styling: string,
 }
 export interface ProductProps {
-    id:  number;
-    label: string;
-    imageUrl?: string; 
-    price: string;
-  }
-  
-  export interface SubCategoryProps {
-    [key: string]: ProductProps[]; 
-  }
-  
-  export interface CategoryProps {
-    id: number;
-    category: string;
-    products: ProductProps[] | SubCategoryProps; 
-  }
-  export interface EachCategoryProps{
-  
-    gadgetsAndAppliances: CategoryProps;
-    mensFashion: CategoryProps;
-    fruits: CategoryProps;
     
+    id: string;
+    name: string;
+    description: string | null;
+    unique_id: string;
+    url_slug: string;
+    is_available: boolean;
+    is_service: boolean;
+    previous_url_slugs: string | null;
+    unavailable: boolean;
+    unavailable_start: string | null;
+    unavailable_end: string | null;
+    parent_product_id: string | null;
+    parent: string | null;
+    organization_id: string;
+    product_image: any[];
+    categories: any[];
+    date_created: string;
+    last_updated: string;
+    user_id: string;
+    photos: Photo[];
+    current_price: CurrentPrice[];
+    is_deleted: boolean;
+    available_quantity: number;
+    selling_price: number | null;
+    discounted_price: number | null;
+    buying_price: number | null;
+    extra_infos: any;
+  }
+  
+  export interface Photo {
+    model_name: string;
+    model_id: string;
+    organization_id: string;
+    filename: string;
+    url: string;
+    is_featured: boolean;
+    save_as_jpg: boolean;
+    is_public: boolean;
+    file_rename: boolean;
+    position: number;
+  }
+  
+  export interface CurrentPrice {
+    NGN: [number, number | null, any[]];
   }
 
   export interface productContextProps{
-    categories: CategoryProps[];
-    getCategory: (category: string) => CategoryProps | undefined;
     showCart: boolean ;
     setShowCart :React.Dispatch<React.SetStateAction<boolean>> ;
   }
 
-  export interface CardItemsProps {
-    product_label?:string
-    heading_styles?: string;
-    title_styles: string;
-    screen_styles: string;
-    stock_info_styles?:string,
-    stock_info_desc?: string,
-    stock_info_btn?: string,
-    buttons_styles:string,
-    imageUrl:StaticImageData;
-      product_title: string;
-      product_price: string;
-      header_card?: boolean;
-};
+export interface cartItem extends ProductProps {
+  quantity: number; 
+  price: number;
+}
 
-export interface cartItemProps {
-  itemImg :StaticImageData,
-  itemPrice: string,
-  itemQuantity: string,
-  itemTotal:string,
-  itemLabel: string
+export interface CartState {
+  cart: cartItem[];
+}
+
+export type CartAction =
+  | { type: 'ADD_TO_CART'; payload: cartItem }
+  | { type: 'REMOVE_FROM_CART'; payload: { id: string } }
+  | { type: 'INCREMENT_QUANTITY'; payload: { id: string } }
+  | { type: 'DECREMENT_QUANTITY'; payload: { id: string } };
+
+export interface CartContextType {
+  cart: cartItem[];
+  dispatch: React.Dispatch<CartAction>;
+}
+export interface CardProps {
+  product: cartItem
+}
+
+
+
+export interface CartItemProps {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  photos: Photo[];
+  onRemove: () => void;
+  onIncrease: () => void;
+  onDecrease: () => void;
+}
+
+export interface DetailedItemViewProps {
+  product: cartItem;
+  onShut: () => void; 
 }

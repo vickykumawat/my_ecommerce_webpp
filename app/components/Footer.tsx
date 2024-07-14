@@ -18,7 +18,7 @@ const Footer = (props: Props) => {
             </div>
 
             <div className='footer_info_box mb-3'>
-                <div className='visit_link links'>
+                <div className='visit_link links '>
                     <div className='items_holder text-sm  p-2'>
                         <p className='footer_sub_headers font-bold text-[#000000]'>Visit Links</p>
                         <a href="/" className='text-sm font-normal text-[#898989]'>shop</a>

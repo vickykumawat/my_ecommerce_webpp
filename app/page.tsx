@@ -13,24 +13,87 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
     
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Cart from "./components/Cart";
+import { CartProvider } from "./utils/context/CartContext";
+import axios from "axios";
+import { cartItem, CartItemProps, ProductProps } from "./utils/interface/Interface";
+import SwitchButtons from "./components/SwitchButtons";
 
 gsap.registerPlugin(useGSAP,ScrollTrigger);
 
 
 
+
+// const fetchProducts = async (page: number) => {
+//   const response = await axios.get('https://api.timbu.cloud/products', {
+    
+//       params: {
+//           organization_id: '1a62fa9710c64be48fb3cf5ef1bc13a2',
+//           reverse_sort: false,
+//           page: page,
+//           size: 5,
+//           Appid: 'F1O68P9PQESTOTU',
+//           Apikey: '46200433c0514fe6aafb41a24eaec2cd20240713202144420438',
+//       },
+//   });
+//   return response.data;
+// };
+
+
+const fetchProducts = async (page: number) => {
+  try {
+    const response = await axios.get(`/api/products`, {
+      params: { page },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching products from API:', error);
+    throw error;
+  }
+};
+
+
+
+
+
 export default function Home() {
-  const { showCart, setShowCart, getCategory } = useProducts();
-  const gadgetsAndAppliances = getCategory("gadgetsAndAppliances");
-  const mensFashion = getCategory("mensFashion");
-  const fruits = getCategory("Fruits");
-  
+ 
+  const { showCart, setShowCart } = useProducts();
   const  container = useRef<HTMLDivElement | null>(null);
+  
+  
+    const [products, setProducts] = useState<cartItem[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [isEmpty, setIsEmpty] = useState(false);
+    const [isError, setIsError] = useState(false);
+    const [page, setPage] = useState(1);
+
+    useEffect(() => {
+        const getProducts = async () => {
+            setIsLoading(true);
+            setIsError(false);
+            try {
+                const data = await fetchProducts(page);
+                console.log(data.items);
+                
+                setProducts(data.items);
+                setIsEmpty(data.total === 0);
+            } catch (error) {
+                setIsError(true);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+       getProducts();   
+    }, [page]);
+
+
 
   useGSAP(()=>{
      if(typeof window !== "undefined"){
-       const boxes = gsap.utils.toArray(".product_screen")
+      //  const boxes = gsap.utils.toArray(".product_screen")
       //  console.log(boxes);
        requestAnimationFrame(()=>{
 
@@ -56,59 +119,30 @@ export default function Home() {
  
        })
      }
-  },{scope: container})
-
-
+  },{scope: container});
+    
   return (
     
     <div ref={container} className="min-w-full main_grid scroll-smooth overflow-hidden">
-      
-      <Hero/>
-      <Card 
-      product_label="Highlight"
-      product_title="Smart watch G"
-      product_price="$50"
-      heading_styles={`text-lg font-bold `}
-      title_styles={``}
-      screen_styles={``}
-      stock_info_styles={``}
-      buttons_styles={`font-bold`}
-      imageUrl={smart_watch}
+      <CartProvider>
+         <Hero/>
+          {isLoading && <div>Loading...</div>}
+          {isError && <div>Error fetching products. Please try again later.</div>}
+          {!isLoading && !isError && isEmpty && <div>No products available. Please refresh your browser.</div>}
+          {!isLoading && !isError && !isEmpty && products.map((product) => (
+            <Card key={product.id} product={product} />
+          ))}
+          
+            <SwitchButtons setPage={setPage} page={page}/>
+            <Footer/>
 
-      />
-      <AdvertBanner/>
-      <Card
-      product_title="Men&apos;s Jacket"
-      product_price="$200"
-       heading_styles={`text-lg font-bold`}
-       title_styles={``}
-       screen_styles={``}
-       stock_info_styles={``}
-       buttons_styles={`font-bold`}
-       imageUrl={jacket}
-      />
-      <Card
-      product_title="Strawberries"
-      product_price="$3"
-       heading_styles={`text-lg font-bold`}
-       title_styles={``}
-       screen_styles={``}
-       stock_info_styles={``}
-       buttons_styles={`font-bold`}
-       imageUrl={strawberries}
-      />
-      
-      <DiscountBox/>
-      <Footer/>
-      
-
-
-      {showCart && (
-        <div id="cart_box" className="cart_bag">
-         <Cart/>
-        </div>
-      )}
-    
+            {showCart && (
+              <div id="cart_box" className="cart_bag">
+              <Cart/>
+              </div>
+            )}
+       </CartProvider>
+     
       
     </div>
   );

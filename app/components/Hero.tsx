@@ -23,7 +23,7 @@ function Hero({}: Props) {
         </div>
 
         <div className='mt-[25px]  my_flex font-semibold'>
-          <CustomButton style='px-8 py-2 text-[17px] rounded-xl btn_color' > Shop now</CustomButton>
+          <CustomButton style='px-8 py-2 text-[17px] rounded-xl btn_color' > Shop now </CustomButton>
         </div>
       </div>
      

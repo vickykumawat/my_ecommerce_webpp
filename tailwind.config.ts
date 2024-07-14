@@ -20,7 +20,9 @@ const config = {
     },
     extend: {
       backgroundImage:{
-        "home-bg" : "url(/hero-bg.svg)"
+        "home-bg" : "url(/hero-bg.svg)",
+        "advert-card-1": "url(/left_card.svg)",
+        "advert-card-2": "url(/frame_2.svg)"
       },
       colors: {
         border: "hsl(var(--border))",

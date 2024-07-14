@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { CardItemsProps } from '../utils/interface/Interface'
+import {  CardProps, ProductProps } from '../utils/interface/Interface'
 import Image from 'next/image';
 import CustomButton from './CustomButton';
 import {
@@ -9,88 +9,96 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import number_one from "../../public/one_btn.svg"
+import arrow_up from "../../public/arrow_up.svg"
+import arrow_down  from "../../public/arrow_down.svg"
+import { useCart } from '../utils/context/CartContext';
+import DetailedView from './DetailedView';
 
 
-const Card:React.FC<CardItemsProps> = ({
-  product_label,
-  product_title,
-  product_price,
-  heading_styles,
-  title_styles,
-  screen_styles,
-  stock_info_styles,
-  buttons_styles,
-  imageUrl,
-}) => {
+const Card:React.FC<CardProps> = ({product}) => {
+
+
+  const [quantity, setStoreCount] = useState<number>(1);
   const  [showMessage, setShowMessage] = useState<boolean>(false);
+  const [showDetail, setShowDetail] = useState(false);
+  const { dispatch } = useCart();
+  
+
+  const handleOpenDetail = () => {
+    setShowDetail(true);
+  };
+
+  const handleCloseDetail = () => {
+    setShowDetail(false);
+  };
+
   const handleCart = () => {
     setShowMessage(true);
+    dispatch({ type: 'ADD_TO_CART', payload: {...product, quantity}  }); 
     setTimeout(() => {
       setShowMessage(false);
     }, 1200);
   };
 
-  return (
-    <div className='card_items_box  bg-[#FEF1ED] mb-3'>
-     
-     <div   className='card_item bg-[#FEF1ED] border-b-2 md:border-none border-[#F05A28] '>
-        {product_label  ? (
-            <div className={` product_heading ${heading_styles}`}>
-              <div className='flex header_box  text-center '>
-                <p className='text-lg md:text-4xl font-bold product_header p-1'>{product_label}</p>
-                <span className='hidden md:flex items-center category_box font-normal text-sm md:text-lg xl:text-xl border border-[#F05A28] px-2'>
-                  <p className=''>Select Category</p>
-                  <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-[20px] px-1">
-                            <path  d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                        </svg>
-                      </DropdownMenuTrigger>
-                        <DropdownMenuContent className='bg-[#F05A28]/[50%] max-w-[80px] shadow-xl -mt-1 z-10 fixed right-0 left-0'>
-                            <DropdownMenuItem className="text-white text-sm">
-                              Gadget and Appliances
-                            </DropdownMenuItem>
-                            <DropdownMenuSeparator/>
-                            <DropdownMenuItem className="text-white text-sm">
-                                Men&apos;s Fashion
-                            </DropdownMenuItem>
-                            <DropdownMenuSeparator/>
+  const handleIncreaseCount = () =>{
+    setStoreCount((prev) => prev >= 1 && prev < 10 ? prev + 1 : prev);
+  }
+  const handleDecreaseCount = () =>{
+    setStoreCount((prev) => prev > 1 ? prev - 1 : prev);
+  }
 
-                            <DropdownMenuItem className="text-white text-sm">
-                              Fruits
-                            </DropdownMenuItem >
-                            <DropdownMenuSeparator/>
-                        </DropdownMenuContent>
-                  </DropdownMenu>
-                </span> 
-              </div>
-            </div>
-        ): (<> </>)}
-         
-        <div className={`product_title ${title_styles}`}>
-          <p className='font-medium xl:font-bold text-2xl'> {product_title}</p>
-          <p className='font-bold text-sm xl:text-lg'>{product_price}</p>
+  return ( 
+    <div className='card_items_box  bg-[#FEF1ED] mt-1'>
+     
+     <div className='card_item bg-[#FEF1ED] border-b-2 md:border-none border-[#F05A28] '>
+
+        <div className='product_title'>
+          <p className='font-medium xl:font-bold text-2xl capitalize tracking wide'> {product.name }</p>
+          <p className='font-bold text-xs xl:text-lg'>{`$${product.current_price[0].NGN[0]}`}</p>
         </div>
-        <div data-speed= "0.5" className={`product_screen ${screen_styles} max-w-full`}>
-          <Image src={imageUrl} className='w-2/4 relative screen_img' alt="product-image"  />
+
+        <div data-speed= "0.5" className='product_screen  max-w-full m-3'>
+              {product.photos && product.photos.length > 0 ? (
+                <Image 
+                  src={`https://api.timbu.cloud/images/${product.photos[0].url}`} 
+                  width={100} 
+                  height={100} 
+                  className='w-2/4 lg:w-9/12 xl:w-2/4 2xl:w-1/4 relative screen_img'  
+                  alt="product-image" 
+                  onClick={handleOpenDetail}
+                />
+              ) : (
+                <p>No image available</p>
+              )}
         </div>
-         {showMessage && (
-           <div className='msg_cont'> <p id="message" className='text-sm text-black'> Added to Cart! </p></div>
-          )}
-        <div className={`product_buttons ${buttons_styles}`}>
-          <CustomButton style={`min-w-[10%] p-2 rounded-[8px] text-[#F05A28] increase`}>
-           <Image src={number_one} className='' alt="product-image"  />
-              
-          </CustomButton>
-          <CustomButton handleClick={handleCart} style={`min-w-[20%] btn_color p-2 rounded-[8px] cart`}>
+
+        {showMessage && (
+          <div className='msg_cont'> <p id="message" className='text-sm text-black'> Added to Cart! </p></div>
+        )}
+
+        <div className='product_buttons font-bold'>
+          <div className="flex items-center border border-[#F05A28] px-2 py-1 rounded-[7px]">
+            <span> <p className='text-lg text-[#F05A28] mr-1'> {quantity}</p> </span>
+            <span className="flex flex-col  gap-2 p-1">
+                <Image src={arrow_down} width={10} height={10} onClick={handleDecreaseCount} alt="decreasing arrow"/>
+                <Image src={arrow_up} width={10} height={10}  onClick={handleIncreaseCount}  alt="increasing arrow"/>
+            </span>
+          </div>
+          <CustomButton handleClick={handleCart} style={`min-w-[20%] btn_color px-5 py-2 rounded-[8px] cart`}>
               Add to Cart
           </CustomButton>
-          <CustomButton style={`min-w-[20%] text-[#F05A28] p-2 rounded-[8px]`}> 
-              Add to Wishlist
+          <CustomButton style={`min-w-[20%] text-[#F05A28] px-5 py-2 rounded-[8px]`} handleClick={ handleOpenDetail }> 
+             View Details
           </CustomButton>
         </div>
+
+        {showDetail && (
+          <div className="detailed-view-overlay">
+            <DetailedView product={product} onShut={handleCloseDetail}/>
+          </div>
+        )}
      </div>
+
     </div>
   )
 }
